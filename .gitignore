@@ -1,0 +1,5 @@
+Lib/*
+Scripts/*
+share/*
+pyvenv.cfg
+CACHEDIR.TAG
