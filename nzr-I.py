@@ -49,8 +49,8 @@ class NRZ_I:
     
     def plot(self):
             signal = self.encode()
-            time : List[Integer] = []
-            levels : List[Integer] = []
+            time : List[Integer] = [0]
+            levels : List[Integer] = [1]
             i = 0 
             plot_signal = [(-1 if i==0 else 1) for i in signal]
 
