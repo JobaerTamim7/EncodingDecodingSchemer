@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 from typing import List, TypeAlias
-from numpy import array
 Integer : TypeAlias = int
 String : TypeAlias = str
 
@@ -25,7 +24,7 @@ class NRZ_I:
 
         for bit in self.message:
             if bit == '1':
-                signal_level = 1 - signal_level 
+                signal_level = 1 - signal_level
             encoded_signal.append(signal_level)
 
         return encoded_signal 
@@ -53,17 +52,17 @@ class NRZ_I:
             time : List[Integer] = []
             levels : List[Integer] = []
             i = 0 
+            plot_signal = [(-1 if i==0 else 1) for i in signal]
 
-            for level in signal:
+            for level in plot_signal:
                 time.extend([i for i in range(i,i+self.time_period+1)])
                 levels.extend([level]*(self.time_period+1))
-
                 i = i+self.time_period
 
 
             plt.figure(figsize=(15,7))
             plt.ylabel("Signal")
-            plt.yticks([0,1])
+            plt.yticks([-1,0,1])
             plt.xlabel("Time")
             plt.xticks([i for i in range(0, len(self.message)*self.time_period+1)])
             plt.plot(time,levels)
@@ -71,13 +70,14 @@ class NRZ_I:
             plt.show()
 
 if __name__ == '__main__':
-    input_bits = '101101010'
-    nrzi = NRZ_I(message=input_bits,time_period=3)
+    input_bits = '10111001'
+    nrzi = NRZ_I(message=input_bits,time_period=1)
     nrzi.setSignal(nrzi.encode())
     print(nrzi.encode())
     print(nrzi.decode())
     nrzi.plot()
     
+
 
 
 
